@@ -1,0 +1,2 @@
+module RarebooksXmlHelper
+end
