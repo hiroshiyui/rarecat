@@ -1,5 +1,6 @@
 class RarebooksXmlController < ApplicationController
   def index
+    @rarebooks = Rarebook.all
   end
 
   def show
