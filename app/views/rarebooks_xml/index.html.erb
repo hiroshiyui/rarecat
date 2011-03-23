@@ -1,3 +1,10 @@
+<div id="toolbar">
+  <ul>
+    <li><%= link_to "Add a new metadata zip to queue.", new_rarebooks_xml_path %></li>
+    <li><%= link_to "Home", root_path %></li>
+  </ul>
+</div>
+
 <div id="queue-list">
   <%= list_queue(@rarebooks) %>
 </div>
