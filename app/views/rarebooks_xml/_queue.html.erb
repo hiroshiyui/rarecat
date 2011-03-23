@@ -1,0 +1,8 @@
+<table>
+  <% @rarebooks.each do |queue| %>
+  <tr>
+    <td><%= queue.created_at %></td>
+    <td><%= metadata_file_name %></td>
+  </tr>
+  <% end %>
+</table>
