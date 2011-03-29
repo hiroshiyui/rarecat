@@ -54,3 +54,12 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+#toolbar ul {
+  padding: 2px;
+}
+
+#toolbar ul li {
+  display: inline;
+  padding-right: 8px;
+}
