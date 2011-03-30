@@ -11,6 +11,7 @@ class RarebookXmlsController < ApplicationController
   end
 
   def create
+    @rarebookxml = RarebookXml.create( params[:rarebookxml] )
   end
 
   def edit
