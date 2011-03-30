@@ -1,12 +1,13 @@
-class RarebooksXmlController < ApplicationController
+class RarebookXmlsController < ApplicationController
   def index
-    @rarebooks = Rarebook.all
+    @rarebookxmls = RarebookXml.all
   end
-
+  
   def show
   end
 
   def new
+    @rarebookxml = RarebookXml.new
   end
 
   def create

@@ -1,6 +1,6 @@
-module RarebooksXmlHelper
-  def list_queue(rarebooks)
-    if rarebooks.empty?
+module RarebookXmlsHelper
+  def list_queue(rarebookxmls)
+    if rarebookxmls.empty?
       #render :text => "Empty queue."
       render :inline => "<span>Empty queue.</span>"
     else

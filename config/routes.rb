@@ -12,7 +12,7 @@ Rarecat::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :rarebooks_xml
+  resources :rarebook_xmls
 
   # Sample resource route with options:
   #   resources :products do
@@ -50,7 +50,7 @@ Rarecat::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
-  root :to => "rarebooks_xml#index"
+  root :to => "rarebook_xmls#index"
 
   # See how all your routes lay out with "rake routes"
 
