@@ -4,7 +4,7 @@ module RarebookXmlsHelper
       #render :text => "Empty queue."
       render :inline => "<span>Empty queue.</span>"
     else
-      render :layout => "queue"
+      render :partial => "queue"
     end
   end
 end

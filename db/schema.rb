@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330115718) do
+ActiveRecord::Schema.define(:version => 20110331010945) do
 
   create_table "rarebook_xmls", :force => true do |t|
     t.datetime "created_at"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20110330115718) do
     t.string   "zip_content_type"
     t.integer  "zip_file_size"
     t.datetime "zip_updated_at"
+    t.text     "notes"
   end
 
 end

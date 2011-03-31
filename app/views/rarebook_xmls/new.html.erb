@@ -2,6 +2,7 @@
 <h2>Upload your new metadata Zip archive here:</h2>
 <%= form_for @rarebookxml, :html => { :multipart => true } do |form| %>
   <%= form.file_field :zip %>
+  <%= form.text_field :notes %>
   <%= form.submit %>
 <% end %>
 </div>

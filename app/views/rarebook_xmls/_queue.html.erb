@@ -1,8 +1,18 @@
-<table>
-  <% @rarebooks.each do |queue| %>
-  <tr>
-    <td><%= queue.created_at %></td>
-    <td><%= queue.zip_file_name %></td>
-  </tr>
-  <% end %>
+<table id="queue-list">
+  <thead>
+    <tr>
+      <th id="created-at">Created at</th>
+      <th id="zip-filename">Zip filename</th>
+      <th id="notes">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rarebookxmls.each do |queue| %>
+    <tr>
+      <td><%= queue.created_at %></td>
+      <td><%= queue.zip_file_name %></td>
+      <td><%= queue.notes %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
