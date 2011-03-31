@@ -1,17 +1,21 @@
 <table id="queue-list">
   <thead>
     <tr>
-      <th id="created-at">Created at</th>
-      <th id="zip-filename">Zip filename</th>
-      <th id="notes">Notes</th>
+      <th>#</th>
+      <th>Created at</th>
+      <th>Zip filename</th>
+      <th>Notes</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
     <% @rarebookxmls.each do |queue| %>
     <tr>
+      <th><%= link_to queue.id, queue %></th>
       <td><%= queue.created_at %></td>
-      <td><%= queue.zip_file_name %></td>
+      <td><%= link_to queue.zip_file_name, queue.zip.url %></td>
       <td><%= queue.notes %></td>
+      <td><%= link_to "Del", queue, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
     <% end %>
   </tbody>
