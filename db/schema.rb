@@ -10,7 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331010945) do
+ActiveRecord::Schema.define(:version => 20110406071547) do
+
+  create_table "dacatalog_xmls", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rarebook_xmls", :force => true do |t|
     t.datetime "created_at"

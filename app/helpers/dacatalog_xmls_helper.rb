@@ -1,0 +1,2 @@
+module DacatalogXmlsHelper
+end

@@ -1,0 +1,17 @@
+<%= form_for(@dacatalog_xml) do |f| %>
+  <% if @dacatalog_xml.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dacatalog_xml.errors.count, "error") %> prohibited this dacatalog_xml from being saved:</h2>
+
+      <ul>
+      <% @dacatalog_xml.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
