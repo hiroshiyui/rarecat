@@ -1,6 +1,6 @@
 <div id="upload">
 <h2>Upload your new metadata Zip archive here:</h2>
-<%= form_for @rarebookxml, :html => { :multipart => true } do |form| %>
+<%= form_for @rarebook_xml, :html => { :multipart => true } do |form| %>
   <%= form.file_field :zip %> <br />
   <span>Notes: (optional)</span> <br />
   <%= form.text_area :notes, :cols => '60', :rows => '10' %> <br />

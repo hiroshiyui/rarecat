@@ -1,19 +1,19 @@
 class RarebookXmlsController < ApplicationController
   def index
-    @rarebookxmls = RarebookXml.all.reverse
+    @rarebook_xmls = RarebookXml.all.reverse
   end
   
   def show
   end
 
   def new
-    @rarebookxml = RarebookXml.new
+    @rarebook_xml = RarebookXml.new
   end
 
   def create
-    @rarebookxml = RarebookXml.new(params[:rarebook_xml])
+    @rarebook_xml = RarebookXml.new(params[:rarebook_xml])
 
-    if @rarebookxml.save
+    if @rarebook_xml.save
       redirect_to(rarebook_xmls_url, :notice => 'File was successfully uploaded.')
     else
       render :action => "new"
@@ -27,8 +27,8 @@ class RarebookXmlsController < ApplicationController
   end
 
   def destroy
-    @rarebookxml = RarebookXml.find(params[:id])
-    @rarebookxml.destroy
+    @rarebook_xml = RarebookXml.find(params[:id])
+    @rarebook_xml.destroy
 
     redirect_to(rarebook_xmls_url)
   end
