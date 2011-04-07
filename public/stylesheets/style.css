@@ -70,13 +70,18 @@ table#queue-list {
   border-collapse: collapse;
 }
 
-table#queue-list td {
+table#queue-list td,
+table#queue-list thead th {
   padding: 4px 12px;
+  /* text-align: center; */
+}
+
+table#queue-list td.center {
+  text-align: center;
 }
 
 table#queue-list thead tr {
   border-bottom: 4px solid #999;
-  padding: 4px 12px;
 }
 
 table#queue-list tbody tr {

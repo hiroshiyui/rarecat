@@ -6,6 +6,8 @@
       <th>Zip filename</th>
       <th>Notes</th>
       <th>Delete</th>
+      <th>Status</th>
+      <th>Job#</th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +17,9 @@
       <td><%= queue.created_at %></td>
       <td><%= link_to queue.zip_file_name, queue.zip.url %></td>
       <td><%= queue.notes %></td>
-      <td><%= link_to "Del", queue, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td class="center"><%= link_to "Del", queue, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td class="center"><%= queue.status %></td>
+      <td class="center"><%= queue.dacatalog_xml_id %></td>
     </tr>
     <% end %>
   </tbody>

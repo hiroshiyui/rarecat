@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406071547) do
+ActiveRecord::Schema.define(:version => 20110407021012) do
 
   create_table "dacatalog_xmls", :force => true do |t|
     t.datetime "created_at"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20110406071547) do
     t.integer  "zip_file_size"
     t.datetime "zip_updated_at"
     t.text     "notes"
+    t.text     "status"
+    t.integer  "dacatalog_xml_id"
   end
 
 end
