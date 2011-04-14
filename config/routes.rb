@@ -1,5 +1,10 @@
 Rarecat::Application.routes.draw do
-  resources :dacatalog_xmls
+  resources :dacatalog_xmls 
+  resources :rarebook_xmls
+
+  resources :dacatalog_xmls do
+    resources :rarebook_xmls
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -14,7 +19,6 @@ Rarecat::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :rarebook_xmls
 
   # Sample resource route with options:
   #   resources :products do

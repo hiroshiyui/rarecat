@@ -1,6 +1,7 @@
 class RarebookXmlsController < ApplicationController
   def index
     @rarebook_xmls = RarebookXml.all.reverse
+    @dacatalog_xml = DacatalogXml.new
   end
   
   def show

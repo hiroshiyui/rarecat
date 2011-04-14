@@ -1,6 +1,8 @@
+<%= form_for @dacatalog_xml do |form| %>
 <table id="queue-list">
   <thead>
     <tr>
+      <th></th>
       <th>#</th>
       <th>Created at</th>
       <th>Zip filename</th>
@@ -11,8 +13,10 @@
     </tr>
   </thead>
   <tbody>
+  <%= form.fields_for @rarebook_xmls do |queue_form| %>
     <% @rarebook_xmls.each do |queue| %>
     <tr>
+      <td><%= check_box_tag "dacatalog_xml[rarebook_xml_ids][]", queue.id %></td>
       <th><%= link_to queue.id, queue %></th>
       <td><%= queue.created_at %></td>
       <td><%= link_to queue.zip_file_name, queue.zip.url %></td>
@@ -22,5 +26,8 @@
       <td class="center"><%= queue.dacatalog_xml_id %></td>
     </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
+<%= form.submit "Add these to a new job" %>
+<% end %>

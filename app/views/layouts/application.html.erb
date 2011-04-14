@@ -10,8 +10,9 @@
 <h1>Rarecat</h1>
 <div id="toolbar">
   <ul>
-    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Home/Pending Queue", root_path %></li>
     <li><%= link_to "Upload", new_rarebook_xml_path %></li>
+    <li><%= link_to "Jobs", dacatalog_xmls_path %></li>
   </ul>
 </div>
 <%= yield %>
