@@ -44,7 +44,10 @@ class DacatalogXmlsController < ApplicationController
 
     respond_to do |format|
       if @dacatalog_xml.save
-        format.html { redirect_to(@dacatalog_xml, :notice => 'Dacatalog xml was successfully created.') }
+        format.html {
+          @dacatalog_xml.rarebook_xmls.update_all(:status => 'Ongoing')
+          redirect_to(@dacatalog_xml, :notice => 'Dacatalog xml was successfully created.') 
+          }
         format.xml  { render :xml => @dacatalog_xml, :status => :created, :location => @dacatalog_xml }
       else
         format.html { render :action => "new" }
