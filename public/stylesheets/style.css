@@ -80,6 +80,10 @@ table#queue-list td.center {
   text-align: center;
 }
 
+table#queue-list td.right {
+  text-align: right;
+}
+
 table#queue-list thead tr {
   border-bottom: 4px solid #999;
 }

@@ -1,3 +1,5 @@
+require 'zipruby'
+
 module RarebookXmlsHelper
   def list_queue(rarebook_xmls)
     if rarebook_xmls.empty?
@@ -14,5 +16,9 @@ module RarebookXmlsHelper
     else
       check_box_tag "dacatalog_xml[rarebook_xml_ids][]", queue.id, false, :disabled => true
     end
+  end
+
+  def files(zipfile)
+    Zip::Archive.open(zipfile).num_files
   end
 end

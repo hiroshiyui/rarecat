@@ -6,6 +6,7 @@
       <th>#</th>
       <th>Created at</th>
       <th>Zip filename</th>
+      <th>Files</th>
       <th>Notes</th>
       <th>Delete</th>
       <th>Status</th>
@@ -19,6 +20,7 @@
       <th><%= link_to queue.id, queue %></th>
       <td><%= queue.created_at %></td>
       <td><%= link_to queue.zip_file_name, queue.zip.url %></td>
+      <td class="right"><%= files(queue.zip.path) %></td>
       <td><%= queue.notes %></td>
       <td class="center"><%= link_to "Del", queue, :confirm => 'Are you sure?', :method => :delete %></td>
       <td class="center"><%= queue.status %></td>
