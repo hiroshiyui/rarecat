@@ -44,6 +44,7 @@ class DacatalogXmlsController < ApplicationController
 
     respond_to do |format|
       if @dacatalog_xml.save
+        FileUtils.mkdir_p(storage_path(@dacatalog_xml))
         format.html {
           @dacatalog_xml.rarebook_xmls.update_all(:status => 'Ongoing')
           redirect_to(@dacatalog_xml, :notice => 'Dacatalog xml was successfully created.') 
@@ -76,11 +77,18 @@ class DacatalogXmlsController < ApplicationController
   # DELETE /dacatalog_xmls/1.xml
   def destroy
     @dacatalog_xml = DacatalogXml.find(params[:id])
+    @dacatalog_xml.rarebook_xmls.destroy_all
+    FileUtils.remove_dir(storage_path(@dacatalog_xml), :force => true)
     @dacatalog_xml.destroy
 
     respond_to do |format|
       format.html { redirect_to(dacatalog_xmls_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+  def storage_path(dacatalog_xml)
+    Rails.root.join( "public", "system", "dacatalog", @dacatalog_xml.id.to_s )
   end
 end
