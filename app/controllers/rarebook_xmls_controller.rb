@@ -5,6 +5,7 @@ class RarebookXmlsController < ApplicationController
   end
   
   def show
+    @rarebook_xml = RarebookXml.find(params[:id])
   end
 
   def new

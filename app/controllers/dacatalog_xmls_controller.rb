@@ -2,7 +2,7 @@ class DacatalogXmlsController < ApplicationController
   # GET /dacatalog_xmls
   # GET /dacatalog_xmls.xml
   def index
-    @dacatalog_xmls = DacatalogXml.all
+    @dacatalog_xmls = DacatalogXml.all.reverse
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,14 +41,13 @@ class DacatalogXmlsController < ApplicationController
   # POST /dacatalog_xmls.xml
   def create
     @dacatalog_xml = DacatalogXml.new(params[:dacatalog_xml])
+    @dacatalog_xml.status = 'Ready to go'
 
     respond_to do |format|
       if @dacatalog_xml.save
-        FileUtils.mkdir_p(@dacatalog_xml.storage_path)
-        format.html {
-          @dacatalog_xml.rarebook_xmls.update_all(:status => 'Ready to go')
-          redirect_to(@dacatalog_xml, :notice => 'Dacatalog xml was successfully created.') 
-          }
+        @dacatalog_xml.mkfiles
+        @dacatalog_xml.rarebook_xmls.update_all(:status => 'Ready to go')
+        format.html { redirect_to(dacatalog_xmls_url, :notice => 'Dacatalog xml was successfully created.') }
         format.xml  { render :xml => @dacatalog_xml, :status => :created, :location => @dacatalog_xml }
       else
         format.html { render :action => "new" }
@@ -78,7 +77,7 @@ class DacatalogXmlsController < ApplicationController
   def destroy
     @dacatalog_xml = DacatalogXml.find(params[:id])
     @dacatalog_xml.rarebook_xmls.destroy_all
-    FileUtils.remove_dir(@dacatalog_xml.storage_path, :force => true)
+    @dacatalog_xml.rmfiles
     @dacatalog_xml.destroy
 
     respond_to do |format|

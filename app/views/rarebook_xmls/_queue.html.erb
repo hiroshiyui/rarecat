@@ -17,7 +17,7 @@
     <% @rarebook_xmls.each do |queue| %>
     <tr>
       <td><%= checkable(queue) %></td>
-      <th><%= link_to queue.id, queue %></th>
+      <th><%= queue.id %></th>
       <td><%= queue.created_at %></td>
       <td><%= link_to queue.zip_file_name, queue.zip.url %></td>
       <td class="right"><%= files(queue.zip.path) %></td>

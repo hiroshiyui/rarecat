@@ -1,21 +1,30 @@
-<h1>Listing dacatalog_xmls</h1>
+<h2>Listing Translation Jobs</h2>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<span id="notice"><%= notice %></span>
 
-<% @dacatalog_xmls.each do |dacatalog_xml| %>
-  <tr>
-    <td><%= link_to 'Show', dacatalog_xml %></td>
-    <td><%= link_to 'Edit', edit_dacatalog_xml_path(dacatalog_xml) %></td>
-    <td><%= link_to 'Destroy', dacatalog_xml, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+<table id="job-list">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Items</th>
+      <th>Detail</th>
+      <th>Status</th>
+      <th>Delete</th>
+      <th>Log</th>
+      <th>Translated File</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @dacatalog_xmls.each do |dacatalog_xml| %>
+    <tr>
+      <td><%= dacatalog_xml.id %></td>
+      <td class="right"><%= dacatalog_xml.rarebook_xmls.count %></th>
+      <td class="center"><%= link_to 'Show', dacatalog_xml %></td>
+      <td><%= dacatalog_xml.status %></td>
+      <td class="center"><%= link_to 'Del', dacatalog_xml, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Dacatalog xml', new_dacatalog_xml_path %>

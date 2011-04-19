@@ -64,35 +64,42 @@ div.field, div.actions {
   padding-right: 8px;
 }
 
-table#queue-list {
+table#queue-list,
+table#job-list {
   padding: 0;
   margin: 0;
   border-collapse: collapse;
 }
 
 table#queue-list td,
-table#queue-list thead th {
+table#job-list td,
+table#queue-list thead th, 
+table#job-list thead th {
   padding: 4px 12px;
-  /* text-align: center; */
 }
 
-table#queue-list td.center {
+table#queue-list td.center,
+table#job-list td.center {
   text-align: center;
 }
 
-table#queue-list td.right {
+table#queue-list td.right, 
+table#job-list td.right {
   text-align: right;
 }
 
-table#queue-list thead tr {
+table#queue-list thead tr, 
+table#job-list thead tr {
   border-bottom: 4px solid #999;
 }
 
-table#queue-list tbody tr {
+table#queue-list tbody tr,
+table#job-list tbody tr {
   border-bottom: 1px solid #ccc;
 }
 
-table#queue-list tbody tr:hover {
+table#queue-list tbody tr:hover, 
+table#job-list tbody tr:hover {
   color: #fff;
   background-color: #ff8c00;
 }

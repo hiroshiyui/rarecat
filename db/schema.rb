@@ -10,11 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411075821) do
+ActiveRecord::Schema.define(:version => 20110419030614) do
 
   create_table "dacatalog_xmls", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "status"
   end
 
   create_table "delayed_jobs", :force => true do |t|

@@ -1,5 +1,12 @@
-<p id="notice"><%= notice %></p>
+<span id="notice"><%= notice %></span>
 
+<h2>Job ID: <%= @dacatalog_xml.id %></h2>
 
-<%= link_to 'Edit', edit_dacatalog_xml_path(@dacatalog_xml) %> |
+<p>Items:</p>
+<ul>
+  <% @dacatalog_xml.rarebook_xmls.each do |rarebook_xml| %>
+  <li><%= rarebook_xml.id %> (<%= rarebook_xml.zip_file_name %>)</li>
+  <% end %>
+</ul>
+
 <%= link_to 'Back', dacatalog_xmls_path %>
