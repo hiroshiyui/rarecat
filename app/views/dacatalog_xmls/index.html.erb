@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>Created at</th>
       <th>Items</th>
       <th>Detail</th>
       <th>Status</th>
@@ -18,6 +19,7 @@
   <% @dacatalog_xmls.each do |dacatalog_xml| %>
     <tr>
       <td><%= dacatalog_xml.id %></td>
+      <td class="right"><%= dacatalog_xml.created_at %></td>
       <td class="right"><%= dacatalog_xml.rarebook_xmls.count %></th>
       <td class="center"><%= link_to 'Show', dacatalog_xml %></td>
       <td><%= dacatalog_xml.status %></td>

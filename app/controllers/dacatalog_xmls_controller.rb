@@ -41,12 +41,13 @@ class DacatalogXmlsController < ApplicationController
   # POST /dacatalog_xmls.xml
   def create
     @dacatalog_xml = DacatalogXml.new(params[:dacatalog_xml])
-    @dacatalog_xml.status = 'Ready to go'
+    @dacatalog_xml.status = 'Running'
 
     respond_to do |format|
       if @dacatalog_xml.save
-        @dacatalog_xml.mkfiles
-        @dacatalog_xml.rarebook_xmls.update_all(:status => 'Ready to go')
+        @dacatalog_xml.prepare_files
+        @dacatalog_xml.rarebook_xmls.update_all(:status => 'Extracted, waiting for translate to Dacatalog format.')
+        @dacatalog_xml.generate
         format.html { redirect_to(dacatalog_xmls_url, :notice => 'Dacatalog xml was successfully created.') }
         format.xml  { render :xml => @dacatalog_xml, :status => :created, :location => @dacatalog_xml }
       else
@@ -77,7 +78,7 @@ class DacatalogXmlsController < ApplicationController
   def destroy
     @dacatalog_xml = DacatalogXml.find(params[:id])
     @dacatalog_xml.rarebook_xmls.destroy_all
-    @dacatalog_xml.rmfiles
+    @dacatalog_xml.clean_files
     @dacatalog_xml.destroy
 
     respond_to do |format|
