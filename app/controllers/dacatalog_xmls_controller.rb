@@ -47,7 +47,7 @@ class DacatalogXmlsController < ApplicationController
       if @dacatalog_xml.save
         @dacatalog_xml.prepare_files
         @dacatalog_xml.rarebook_xmls.update_all(:status => 'Extracted, waiting for translate to Dacatalog format.')
-        @dacatalog_xml.generate
+        @dacatalog_xml.delay.generate
         format.html { redirect_to(dacatalog_xmls_url, :notice => 'Dacatalog xml was successfully created.') }
         format.xml  { render :xml => @dacatalog_xml, :status => :created, :location => @dacatalog_xml }
       else

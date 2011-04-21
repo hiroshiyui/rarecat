@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110419030614) do
+ActiveRecord::Schema.define(:version => 20110421062714) do
 
   create_table "dacatalog_xmls", :force => true do |t|
     t.datetime "created_at"
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(:version => 20110419030614) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "journals", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rarebook_xmls", :force => true do |t|
     t.datetime "created_at"

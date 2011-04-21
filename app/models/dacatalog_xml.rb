@@ -41,18 +41,30 @@ class DacatalogXml < ActiveRecord::Base
     Dir.glob(File.join( storage_path, "**", "*.xml" ))
   end
 
-  def generate
+  def generate # what we want.
     xslt = XML::XSLT.new
 
     self.items.each do |item|
-      xslt.xml = REXML::Document.new( File.open(item) )
-      xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog.xsl" )) )
-      xslt.parameters = {"date" => Time.now.to_s}
-      #out = xslt.serve
-      #print out
+      rarebook_xml = REXML::Document.new( File.open(item) )
+     
+      case rarebook_xml.root.name # to choose the right XSL
+        when "publication" then
+          xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog.xsl" )) )
+        when "journalArticle" then
+          xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog-journal-articles.xsl" )) )
+      end
+      
+      xslt.xml = rarebook_xml # xslt.xml is String which doesn't fit our XML processing needs.
+      xslt.parameters = {
+        "date"  => Time.now.to_s,
+        "xmlId" => File.basename(item, ".xml")
+      }
+     
+      dacatalog = File.path(item).chomp(".xml").concat("-dacatalog")
+      xslt.save(dacatalog)
     end
   end
-  
+
   def clean_files
     remove_dir(storage_path, :force => true)
   end

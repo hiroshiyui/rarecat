@@ -1,4 +1,6 @@
 Rarecat::Application.routes.draw do
+  resources :journals
+
   resources :dacatalog_xmls 
   resources :rarebook_xmls
 

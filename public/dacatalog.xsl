@@ -4,6 +4,7 @@
   <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
   <!-- parameters and variables -->
   <xsl:param name="date">Unknown</xsl:param>
+  <xsl:param name="xmlId">Unknown</xsl:param>
   <xsl:variable name="base">http://rarebooks.ith.sinica.edu.tw/sinicafrsFront99/</xsl:variable>
   <!-- main XSL start -->
   <xsl:template match="/">
@@ -13,21 +14,35 @@
           <Project Creator="中央研究院臺灣史研究所">
             <xsl:attribute name="GenDate">
               <xsl:value-of select="$date"/>
-              <!-- <xsl:value-of select="document('http://xobjex.com/service/date.xsl')/date/utc/@stamp"/> -->
             </xsl:attribute>日治時期臺灣研究古籍資料庫</Project>
           <Catalog>
             <Record>內容主題:善本古籍:古籍圖書:日治時期臺灣研究古籍:<xsl:value-of select="collectionId"/>:<xsl:value-of select="type"/></Record>
             <Record>典藏機構與計畫:中央研究院:臺灣珍藏史料數位典藏及加值應用計畫:日治時期臺灣研究古籍</Record> 
           </Catalog>
           <DigiArchiveID><xsl:value-of select="uniqueId"/></DigiArchiveID>
-          <Hyperlink><xsl:value-of select="$base"/></Hyperlink>
+          <Hyperlink><xsl:value-of select="$base"/>search/search_result2.htm?xmlId=<xsl:value-of select="$xmlId"/>&amp;display=detail</Hyperlink>
+          <!--
+            publication: 
+              http://rarebooks.ith.sinica.edu.tw/sinicafrsFront99
+              /search/search_result2.htm?
+              xmlId=0000128047
+              &display=detail
+
+            journalArticle: 
+              http://rarebooks.ith.sinica.edu.tw/sinicafrsFront99
+              /search/search_result2.htm?
+              xmlId=0000180157
+              &articleTitle=%E6%B5%B7%E5%A4%96%E5%9C%96%E6%9B%B8%E9%A4%A8%E8%A8%AA%E5%95%8F%E8%A8%98
+              &display=detail
+          -->
           <xsl:choose>
             <xsl:when test="type = '圖書'">
-              <ICON><xsl:value-of select="concat(uniqueId, '_0001.jpg')"/></ICON>
+              <ICON><xsl:value-of select="digitalContent/DO"/></ICON>
             </xsl:when>
             <xsl:when test="type = '期刊'">
-              <xsl:variable name="basedoid"><xsl:value-of select="substring(digitalContent/DO,12,14)"/></xsl:variable>
-              <ICON><xsl:value-of select="concat($basedoid, '_0001.jpg')"/></ICON>
+              <!-- <xsl:variable name="basedoid"><xsl:value-of select="substring(digitalContent/DO,12,14)"/></xsl:variable> -->
+              <!-- <ICON><xsl:value-of select="concat($basedoid, '_0001.jpg')"/></ICON> -->
+              <ICON></ICON>
             </xsl:when>
           </xsl:choose>
         </AdminDesc>
@@ -109,8 +124,8 @@
             <xsl:attribute name="field">
               <xsl:text>典藏單位</xsl:text>
             </xsl:attribute>
-
-            <xsl:text>中央研究院臺灣史研究所、國立中央圖書館臺灣分館</xsl:text>
+            <xsl:value-of select="digitalContent/contentNotes"/>
+            <!-- <xsl:text>中央研究院臺灣史研究所、國立中央圖書館臺灣分館</xsl:text> -->
           </Rights>
         </MetaDesc>
       </xsl:for-each>
