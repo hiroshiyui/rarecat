@@ -60,8 +60,21 @@ class DacatalogXml < ActiveRecord::Base
         "xmlId" => File.basename(item, ".xml")
       }
      
-      dacatalog = File.path(item).chomp(".xml").concat("-dacatalog")
+      dacatalog = File.path(item).chomp(".xml").concat("-dacatalog")  # name a tmp name to indicate what the generated file is.
       xslt.save(dacatalog)
+    end
+
+    cd(storage_path)
+    Zip::Archive.open("#{self.id.to_s}-dacatalog.zip", Zip::CREATE) do |ar|
+      Dir.glob("**/*").each do |path|
+        if File.directory?(path)
+          ar.add_dir(path)
+        else
+          if path.end_with?("-dacatalog")
+            ar.add_file(path.chomp("-dacatalog").concat(".xml"), path)  # rename the tmp names to .xml.
+          end
+        end
+      end
     end
   end
 
@@ -70,7 +83,7 @@ class DacatalogXml < ActiveRecord::Base
   end
 end
 
-class GenerationJob
+class GenerationJob # a delayed_job for DacatalogXml.generate()
   attr_accessor :dacatalog_xml
 
   def initialize(dacatalog_xml)
@@ -79,7 +92,7 @@ class GenerationJob
 
   def perform
     @dacatalog_xml.update_attribute(:status, "Running")
-    @dacatalog_xml.generate
+    @dacatalog_xml.generate # NOTICE: Remember to restart delayed job server if you had modified the task statements.
   end
 
   def success(job)

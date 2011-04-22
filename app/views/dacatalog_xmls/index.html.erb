@@ -2,6 +2,7 @@
 
 <span id="notice"><%= notice %></span>
 
+
 <table id="job-list">
   <thead>
     <tr>
@@ -11,7 +12,6 @@
       <th>Detail</th>
       <th>Status</th>
       <th>Delete</th>
-      <th>Log</th>
       <th>Translated File</th>
     </tr>
   </thead>
@@ -24,8 +24,7 @@
       <td class="center"><%= link_to 'Show', dacatalog_xml %></td>
       <td><%= dacatalog_xml.status %></td>
       <td class="center"><%= link_to 'Del', dacatalog_xml, :confirm => 'Are you sure?', :method => :delete %></td>
-      <td></td>
-      <td></td>
+      <td class="center"><%= downloadable?(dacatalog_xml) %></td>
     </tr>
   <% end %>
   </tbody>
