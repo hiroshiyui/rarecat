@@ -69,3 +69,20 @@ class DacatalogXml < ActiveRecord::Base
     remove_dir(storage_path, :force => true)
   end
 end
+
+class GenerationJob
+  attr_accessor :dacatalog_xml
+
+  def initialize(dacatalog_xml)
+    self.dacatalog_xml = dacatalog_xml
+  end
+
+  def perform
+    @dacatalog_xml.update_attribute(:status, "Running")
+    @dacatalog_xml.generate
+  end
+
+  def success(job)
+    @dacatalog_xml.update_attribute(:status, "Success!")
+  end
+end
