@@ -103,3 +103,6 @@ table#job-list tbody tr:hover {
   color: #fff;
   background-color: #ff8c00;
 }
+
+div#queue-list span#upload-link {
+}

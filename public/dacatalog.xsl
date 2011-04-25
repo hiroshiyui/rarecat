@@ -51,7 +51,7 @@
           <Title>
             <xsl:for-each select="title/mainTitle"><xsl:value-of select="."/></xsl:for-each>
             <xsl:for-each select="title/alterTitle">
-              <xsl:if test="string(.)">&#160;<xsl:value-of select="."/></xsl:if>
+              <xsl:if test="string(.)"><xsl:text> </xsl:text><xsl:value-of select="."/></xsl:if>
             </xsl:for-each>
           </Title>
           <!-- Creator -->
@@ -66,7 +66,7 @@
 
             <xsl:for-each select="subjectHeading/primaryHeading"><xsl:value-of select="."/></xsl:for-each>
             <xsl:for-each select="subjectHeading/secHeading">
-              <xsl:if test="string(.)"><xsl:text> » </xsl:text><xsl:value-of select="."/></xsl:if>
+              <xsl:if test="string(.)"><xsl:text> :: </xsl:text><xsl:value-of select="."/></xsl:if>
             </xsl:for-each>
           </Subject>
           <!-- Description -->

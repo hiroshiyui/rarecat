@@ -97,5 +97,6 @@ class GenerationJob # a delayed_job for DacatalogXml.generate()
 
   def success(job)
     @dacatalog_xml.update_attribute(:status, "Success!")
+    @dacatalog_xml.rarebook_xmls.update_all(:status => "Job's done.")
   end
 end
