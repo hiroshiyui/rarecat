@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'zipruby'
 require 'rexml/document'
 require 'xml/xslt'
@@ -46,6 +47,12 @@ class DacatalogXml < ActiveRecord::Base
 
     self.items.each do |item|
       rarebook_xml = REXML::Document.new( File.open(item) )
+      
+      xslt.xml = rarebook_xml # xslt.xml is String which doesn't fit our XML processing needs.
+      xslt.parameters = {
+        "date"  => Time.now.to_s,
+        "xmlId" => File.basename(item, ".xml")
+      }
      
       case rarebook_xml.root.name # to choose the right XSL
         when "publication" then
@@ -54,11 +61,11 @@ class DacatalogXml < ActiveRecord::Base
           xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog-journal-articles.xsl" )) )
       end
       
-      xslt.xml = rarebook_xml # xslt.xml is String which doesn't fit our XML processing needs.
-      xslt.parameters = {
-        "date"  => Time.now.to_s,
-        "xmlId" => File.basename(item, ".xml")
-      }
+      if rarebook_xml.root.elements["type[1]"].text == "期刊"
+      end
+
+      if rarebook_xml.root.name == "journalArticle"
+      end
      
       dacatalog = File.path(item).chomp(".xml").concat("-dacatalog")  # name a tmp name to indicate what the generated file is.
       xslt.save(dacatalog)
