@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<ul>
+  <li><%= @journal.unique_id %></li>
+  <li><%= @journal.title %></li>
+  <li><%= @journal.repository %></li>
+  <li><%= @journal.collection_set %></li>
+  <li><%= @journal.first_issue %></li>
+</ul>
 
 <%= link_to 'Edit', edit_journal_path(@journal) %> |
 <%= link_to 'Back', journals_path %>

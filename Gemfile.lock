@@ -91,6 +91,7 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
+    yaml_db (0.2.1)
     zipruby (0.3.6)
 
 PLATFORMS
@@ -104,4 +105,5 @@ DEPENDENCIES
   ruby-xslt
   sqlite3
   webrat
+  yaml_db
   zipruby

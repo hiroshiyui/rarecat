@@ -1,6 +1,19 @@
 <div id="upload">
 <h2>Upload your new metadata Zip archive here:</h2>
 <%= form_for @rarebook_xml, :html => { :multipart => true } do |form| %>
+
+  <% if @rarebook_xml.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rarebook_xml.errors.count, "error") %> prohibited this rarebook_xml from being saved:</h2>
+
+      <ul>
+      <% @rarebook_xml.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= form.file_field :zip %> <br />
   <span>Notes: (optional)</span> <br />
   <%= form.text_area :notes, :cols => '60', :rows => '10' %> <br />

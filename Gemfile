@@ -26,6 +26,7 @@ gem 'ruby-xslt'
 gem 'zipruby'
 gem 'paperclip'
 gem 'delayed_job'
+gem 'yaml_db'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

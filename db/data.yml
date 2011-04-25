@@ -1,0 +1,203 @@
+
+--- 
+dacatalog_xmls: 
+  columns: 
+  - id
+  - created_at
+  - updated_at
+  - status
+  records: 
+  - - 4
+    - 2011-04-25 01:26:09.197892
+    - 2011-04-25 01:26:16.204795
+    - Success!
+  - - 5
+    - 2011-04-25 01:55:58.091312
+    - 2011-04-25 01:56:17.884616
+    - Success!
+  - - 6
+    - 2011-04-25 02:10:29.405735
+    - 2011-04-25 02:10:48.099973
+    - Success!
+  - - 7
+    - 2011-04-25 06:38:47.750036
+    - 2011-04-25 06:38:54.095578
+    - Success!
+  - - 8
+    - 2011-04-25 07:21:51.046389
+    - 2011-04-25 07:22:09.069673
+    - Success!
+  - - 9
+    - 2011-04-25 07:35:09.012627
+    - 2011-04-25 07:35:21.463523
+    - Success!
+  - - 10
+    - 2011-04-25 08:06:50.462667
+    - 2011-04-25 08:06:57.364897
+    - Success!
+  - - 11
+    - 2011-04-25 08:14:52.880716
+    - 2011-04-25 08:15:10.189028
+    - Success!
+
+--- 
+journals: 
+  columns: 
+  - id
+  - created_at
+  - updated_at
+  - unique_id
+  - title
+  - repository
+  - collection_set
+  - first_issue
+  records: 
+  - - 1
+    - 2011-04-25 09:22:03.269039
+    - 2011-04-25 09:22:03.269039
+    - C0001
+    - "\xE5\x8D\x97\xE6\x96\xB9\xE8\xB3\x87\xE6\x96\x99\xE9\xA4\xA8\xE5\xA0\xB1"
+    - "\xE4\xB8\xAD\xE5\xA4\xAE\xE7\xA0\x94\xE7\xA9\xB6\xE9\x99\xA2\xE8\x87\xBA\xE7\x81\xA3\xE5\x8F\xB2\xE7\xA0\x94\xE7\xA9\xB6\xE6\x89\x80/\xE5\x9C\x8B\xE7\xAB\x8B\xE4\xB8\xAD\xE5\xA4\xAE\xE5\x9C\x96\xE6\x9B\xB8\xE9\xA4\xA8\xE8\x87\xBA\xE7\x81\xA3\xE5\x88\x86\xE9\xA4\xA8"
+    - "\xE5\x8D\x97\xE6\x96\xB9\xE8\xB3\x87\xE6\x96\x99\xE9\xA4\xA8\xE8\x97\x8F\xE6\x9B\xB8"
+    - "19430101"
+  - - 2
+    - 2011-04-25 09:53:08.475817
+    - 2011-04-25 09:53:08.475817
+    - C0038
+    - "\xE5\x8D\x97\xE6\x96\xB9"
+    - "\xE4\xB8\xAD\xE5\xA4\xAE\xE7\xA0\x94\xE7\xA9\xB6\xE9\x99\xA2\xE8\x87\xBA\xE7\x81\xA3\xE5\x8F\xB2\xE7\xA0\x94\xE7\xA9\xB6\xE6\x89\x80/\xE5\x9C\x8B\xE7\xAB\x8B\xE4\xB8\xAD\xE5\xA4\xAE\xE5\x9C\x96\xE6\x9B\xB8\xE9\xA4\xA8\xE8\x87\xBA\xE7\x81\xA3\xE5\x88\x86\xE9\xA4\xA8"
+    - "\xE8\x87\xBA\xE7\x81\xA3\xE7\xB8\xBD\xE7\x9D\xA3\xE5\xBA\x9C\xE5\x9C\x96\xE6\x9B\xB8\xE9\xA4\xA8\xE8\x97\x8F\xE6\x9B\xB8"
+    - "19410415"
+  - - 3
+    - 2011-04-25 09:54:08.148899
+    - 2011-04-25 09:54:08.148899
+    - C0008
+    - "\xE5\xA4\xA7\xE6\x9D\xB1\xE4\xBA\x9E"
+    - "\xE4\xB8\xAD\xE5\xA4\xAE\xE7\xA0\x94\xE7\xA9\xB6\xE9\x99\xA2\xE8\x87\xBA\xE7\x81\xA3\xE5\x8F\xB2\xE7\xA0\x94\xE7\xA9\xB6\xE6\x89\x80/\xE5\x9C\x8B\xE7\xAB\x8B\xE4\xB8\xAD\xE5\xA4\xAE\xE5\x9C\x96\xE6\x9B\xB8\xE9\xA4\xA8\xE8\x87\xBA\xE7\x81\xA3\xE5\x88\x86\xE9\xA4\xA8"
+    - "\xE5\x8D\x97\xE6\x96\xB9\xE8\xB3\x87\xE6\x96\x99\xE9\xA4\xA8\xE8\x97\x8F\xE6\x9B\xB8"
+    - "19430101"
+
+--- 
+rarebook_xmls: 
+  columns: 
+  - id
+  - created_at
+  - updated_at
+  - zip_file_name
+  - zip_content_type
+  - zip_file_size
+  - zip_updated_at
+  - notes
+  - status
+  - dacatalog_xml_id
+  records: 
+  - - 6
+    - 2011-04-25 01:26:05.347732
+    - 2011-04-25 01:26:09.228858
+    - 20110304085909.zip
+    - application/zip
+    - 47616
+    - 2011-04-25 01:26:05.330060
+    - ""
+    - Job's done.
+    - 4
+  - - 7
+    - 2011-04-25 01:27:42.490797
+    - 2011-04-25 01:27:42.490797
+    - 20110304085909.zip
+    - application/zip
+    - 47616
+    - 2011-04-25 01:27:42.483345
+    - ""
+    - 
+    - 
+  - - 8
+    - 2011-04-25 01:49:21.821633
+    - 2011-04-25 01:49:21.821633
+    - 20110304085909.zip
+    - application/zip
+    - 47616
+    - 2011-04-25 01:49:21.813687
+    - ""
+    - 
+    - 
+  - - 9
+    - 2011-04-25 01:53:04.190543
+    - 2011-04-25 01:53:04.190543
+    - 20110304085909.zip
+    - application/x-zip-compressed
+    - 47616
+    - 2011-04-25 01:53:04.182670
+    - ""
+    - 
+    - 
+  - - 10
+    - 2011-04-25 01:55:45.378837
+    - 2011-04-25 01:55:58.148414
+    - B0001~B0100_4CDA.zip
+    - application/x-zip-compressed
+    - 357681
+    - 2011-04-25 01:55:45.365701
+    - B0001~B0100 123 records
+    - Job's done.
+    - 5
+  - - 11
+    - 2011-04-25 02:10:24.845645
+    - 2011-04-25 02:10:29.412994
+    - A0001~A0100_4CDA.zip
+    - application/x-zip-compressed
+    - 359415
+    - 2011-04-25 02:10:24.826691
+    - ""
+    - Job's done.
+    - 6
+  - - 12
+    - 2011-04-25 06:38:36.389087
+    - 2011-04-25 06:38:47.757777
+    - 20110421151629.zip
+    - application/zip
+    - 60818
+    - 2011-04-25 06:38:36.381424
+    - ""
+    - Job's done.
+    - 7
+  - - 13
+    - 2011-04-25 07:21:47.265510
+    - 2011-04-25 07:21:51.053761
+    - 20110421104441-Publications.zip
+    - application/zip
+    - 241134
+    - 2011-04-25 07:21:47.256362
+    - ""
+    - Job's done.
+    - 8
+  - - 14
+    - 2011-04-25 07:35:02.807311
+    - 2011-04-25 07:35:09.019800
+    - 20110421104441-Publications.zip
+    - application/zip
+    - 241134
+    - 2011-04-25 07:35:02.797321
+    - ""
+    - Job's done.
+    - 9
+  - - 15
+    - 2011-04-25 08:06:47.501805
+    - 2011-04-25 08:06:50.469977
+    - 20110421151629-JournalArticles.zip
+    - application/zip
+    - 60818
+    - 2011-04-25 08:06:47.494481
+    - ""
+    - Job's done.
+    - 10
+  - - 16
+    - 2011-04-25 08:14:48.929308
+    - 2011-04-25 08:14:52.887768
+    - 20110421104441-Publications.zip
+    - application/zip
+    - 241134
+    - 2011-04-25 08:14:48.915495
+    - ""
+    - Job's done.
+    - 11

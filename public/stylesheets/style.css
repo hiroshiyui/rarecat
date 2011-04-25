@@ -61,11 +61,12 @@ div.field, div.actions {
 
 #toolbar ul li {
   display: inline;
-  padding-right: 8px;
+  padding-right: 16px;
 }
 
 table#queue-list,
-table#job-list {
+table#job-list,
+table#journal-list {
   padding: 0;
   margin: 0;
   border-collapse: collapse;
@@ -73,33 +74,40 @@ table#job-list {
 
 table#queue-list td,
 table#job-list td,
+table#journal-list td, 
 table#queue-list thead th, 
-table#job-list thead th {
+table#job-list thead th,
+table#journal-list thead th {
   padding: 4px 12px;
 }
 
 table#queue-list td.center,
-table#job-list td.center {
+table#job-list td.center,
+table#journal-list td.center {
   text-align: center;
 }
 
 table#queue-list td.right, 
-table#job-list td.right {
+table#job-list td.right,
+table#journal-list td.right {
   text-align: right;
 }
 
 table#queue-list thead tr, 
-table#job-list thead tr {
+table#job-list thead tr,
+table#journal-list thead tr {
   border-bottom: 4px solid #999;
 }
 
 table#queue-list tbody tr,
-table#job-list tbody tr {
+table#job-list tbody tr,
+table#journal-list tbody tr {
   border-bottom: 1px solid #ccc;
 }
 
 table#queue-list tbody tr:hover, 
-table#job-list tbody tr:hover {
+table#job-list tbody tr:hover,
+table#journal-list tbody tr:hover {
   color: #fff;
   background-color: #ff8c00;
 }

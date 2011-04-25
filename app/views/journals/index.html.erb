@@ -1,19 +1,31 @@
 <h1>Listing journals</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<table id="journal-list">
+  <thead>
+    <tr>
+      <th>Unique ID</th>
+      <th>Title</th>
+      <th>Repository</th>
+      <th>Collection Set</th>
+      <th>First Issue</th>
+      <th>Edit</th>
+      <th>Del</th>
+    </tr>
+  </thead>
 
-<% @journals.each do |journal| %>
-  <tr>
-    <td><%= link_to 'Show', journal %></td>
-    <td><%= link_to 'Edit', edit_journal_path(journal) %></td>
-    <td><%= link_to 'Destroy', journal, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <tbody>
+  <% @journals.each do |journal| %>
+    <tr>
+      <td class="center"><%= journal.unique_id %></td>
+      <td class="center"><%= journal.title %></td>
+      <td class="center"><%= journal.repository %></td>
+      <td class="center"><%= journal.collection_set %></td>
+      <td class="right"><%= journal.first_issue %></td>
+      <td><%= link_to 'Edit', edit_journal_path(journal) %></td>
+      <td><%= link_to 'Delete', journal, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
 <br />
