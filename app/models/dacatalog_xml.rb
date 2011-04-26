@@ -7,7 +7,6 @@ class DacatalogXml < ActiveRecord::Base
   include FileUtils # mixins mkdir_p, cd, remove_dir...
   has_many :rarebook_xmls
   accepts_nested_attributes_for :rarebook_xmls, :allow_destroy => true
-
   validates_presence_of :rarebook_xmls
 
   def storage_path
@@ -47,26 +46,33 @@ class DacatalogXml < ActiveRecord::Base
 
     self.items.each do |item|
       rarebook_xml = REXML::Document.new( File.open(item) )
-      
       xslt.xml = rarebook_xml # xslt.xml is String which doesn't fit our XML processing needs.
-      xslt.parameters = {
-        "date"  => Time.now.to_s,
-        "xmlId" => File.basename(item, ".xml")
-      }
-     
-      case rarebook_xml.root.name # to choose the right XSL
-        when "publication" then
+      
+      case rarebook_xml.root.elements["type[1]"].text # to choose the right XSL and to pass the required parameters
+        when "圖書" then
           xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog.xsl" )) )
-        when "journalArticle" then
+          xslt.parameters = {
+            "date"          => Time.now.to_s,
+            "xmlId"         => File.basename(item, ".xml")
+          }
+        when "期刊" then
+          xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog.xsl" )) )
+          xslt.parameters = {
+            "date"          => Time.now.to_s,
+            "xmlId"         => File.basename(item, ".xml"),
+            "firstIssue"    => Journal.find_by_unique_id( rarebook_xml.root.elements["uniqueId[1]"].text ).first_issue
+          }
+        when "期刊篇目" then
           xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog-journal-articles.xsl" )) )
+          xslt.parameters = {
+            "date"          => Time.now.to_s,
+            "xmlId"         => File.basename(item, ".xml"),
+            "collectionSet" => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).collection_set,
+            "repository"    => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).repository,
+            "journalTitle"  => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).title
+          }
       end
       
-      if rarebook_xml.root.elements["type[1]"].text == "期刊"
-      end
-
-      if rarebook_xml.root.name == "journalArticle"
-      end
-     
       dacatalog = File.path(item).chomp(".xml").concat("-dacatalog")  # name a tmp name to indicate what the generated file is.
       xslt.save(dacatalog)
     end
@@ -105,5 +111,15 @@ class GenerationJob # a delayed_job for DacatalogXml.generate()
   def success(job)
     @dacatalog_xml.update_attribute(:status, "Success!")
     @dacatalog_xml.rarebook_xmls.update_all(:status => "Job's done.")
+  end
+  
+  def error(job, exception)
+    @dacatalog_xml.update_attribute(:status, "Error...")
+    @dacatalog_xml.rarebook_xmls.update_all(:status => "Error occurred.")
+  end
+
+  def failure
+    @dacatalog_xml.update_attribute(:status, "Failed...")
+    @dacatalog_xml.rarebook_xmls.update_all(:status => "Job's failed.")
   end
 end

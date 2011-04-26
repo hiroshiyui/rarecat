@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @rarebook_xmls.each do |queue| %>
-    <tr>
+    <tr class="<%= cycle("even", "odd") %>">
       <td><%= checkable(queue) %></td>
       <th><%= queue.id %></th>
       <td><%= queue.created_at %></td>
@@ -29,5 +29,5 @@
     <% end %>
   </tbody>
 </table>
-<%= form.submit "Add these to a new job" %>
+<%= form.submit "Add these to a new job" %> <span id="upload-link"><%= link_to "Upload", new_rarebook_xml_path %></span>
 <% end %>

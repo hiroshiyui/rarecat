@@ -2,7 +2,6 @@
 
 <span id="notice"><%= notice %></span>
 
-
 <table id="job-list">
   <thead>
     <tr>
@@ -17,7 +16,7 @@
   </thead>
   <tbody>
   <% @dacatalog_xmls.each do |dacatalog_xml| %>
-    <tr>
+    <tr class="<%= cycle("even", "odd") %>">
       <td><%= dacatalog_xml.id %></td>
       <td class="right"><%= dacatalog_xml.created_at %></td>
       <td class="right"><%= dacatalog_xml.rarebook_xmls.count %></th>

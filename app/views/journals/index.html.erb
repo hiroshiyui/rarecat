@@ -1,5 +1,5 @@
 <h1>Listing journals</h1>
-
+<span id="new-journal"><%= link_to 'New Journal', new_journal_path %></span>
 <table id="journal-list">
   <thead>
     <tr>
@@ -15,7 +15,7 @@
 
   <tbody>
   <% @journals.each do |journal| %>
-    <tr>
+    <tr class="<%= cycle("even", "odd") %>">
       <td class="center"><%= journal.unique_id %></td>
       <td class="center"><%= journal.title %></td>
       <td class="center"><%= journal.repository %></td>
@@ -27,7 +27,4 @@
   <% end %>
   </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Journal', new_journal_path %>
+<span>Count: <%= @journals.count %></span>
