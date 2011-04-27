@@ -57,20 +57,32 @@ class DacatalogXml < ActiveRecord::Base
           }
         when "期刊" then
           xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog.xsl" )) )
-          xslt.parameters = {
-            "date"          => Time.now.to_s,
-            "xmlId"         => File.basename(item, ".xml"),
-            "firstIssue"    => Journal.find_by_unique_id( rarebook_xml.root.elements["uniqueId[1]"].text ).first_issue
-          }
+
+          if Journal.find_by_unique_id( rarebook_xml.root.elements["uniqueId[1]"].text ).nil? # means we can't find that journal
+            logger.debug "#{File.basename(item)} - Error: No such journal in mapping table."
+            next  # skip this item
+          else
+            xslt.parameters = {
+              "date"          => Time.now.to_s,
+              "xmlId"         => File.basename(item, ".xml"),
+              "firstIssue"    => Journal.find_by_unique_id( rarebook_xml.root.elements["uniqueId[1]"].text ).first_issue
+            }
+          end
         when "期刊篇目" then
           xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog-journal-articles.xsl" )) )
-          xslt.parameters = {
-            "date"          => Time.now.to_s,
-            "xmlId"         => File.basename(item, ".xml"),
-            "collectionSet" => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).collection_set,
-            "repository"    => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).repository,
-            "journalTitle"  => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).title
-          }
+
+          if Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).nil?
+            logger.debug "#{File.basename(item)} - Error: No such journal in mapping table."
+            next
+          else
+            xslt.parameters = {
+              "date"          => Time.now.to_s,
+              "xmlId"         => File.basename(item, ".xml"),
+              "collectionSet" => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).collection_set,
+              "repository"    => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).repository,
+              "journalTitle"  => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).title
+            }
+          end
       end
       
       dacatalog = File.path(item).chomp(".xml").concat("-dacatalog")  # name a tmp name to indicate what the generated file is.
