@@ -53,7 +53,8 @@ describe DacatalogXmlsController do
       it "redirects to the created dacatalog_xml" do
         DacatalogXml.stub(:new) { mock_dacatalog_xml(:save => true) }
         post :create, :dacatalog_xml => {}
-        response.should redirect_to(dacatalog_xml_url(mock_dacatalog_xml))
+        #response.should redirect_to(dacatalog_xml_url(mock_dacatalog_xml))
+        response.should redirect_to(dacatalog_xmls_url)
       end
     end
 

@@ -6,6 +6,8 @@ describe "rarebook_xmls/index.html.erb" do
       stub_model(RarebookXml),
       stub_model(RarebookXml)
     ])
+
+    @dacatalog_xml = mock_model(DacatalogXml)
   end
 
   it "renders a list of rarebook_xmls" do
