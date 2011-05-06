@@ -30,4 +30,18 @@
   </tbody>
 </table>
 <%= form.submit "Add these to a new job" %> <span id="upload-link"><%= link_to "Upload", new_rarebook_xml_path %></span>
+<br/>
+<span>* Fill out these columns if your new translating job is for TAIS:</span>
+<div class="row">
+<%= form.label :archives_type, 'Archives Type:' %>
+<%= form.text_field :archives_type %>
+</div>
+<div class="row">
+<%= form.label :archives_fonds, 'Archives Fonds:' %>
+<%= form.text_field :archives_fonds %>
+</div>
+<div class="row">
+<%= form.label :archives_series, 'Archives Series:' %>
+<%= form.text_field :archives_series %>
+<div class="row">
 <% end %>

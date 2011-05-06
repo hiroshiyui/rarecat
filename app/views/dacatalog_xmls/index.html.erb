@@ -8,6 +8,9 @@
       <th>#</th>
       <th>Created at</th>
       <th>Items</th>
+      <th>Type</th>
+      <th>Fonds</th>
+      <th>Series</th>
       <th>Detail</th>
       <th>Status</th>
       <th>Delete</th>
@@ -20,6 +23,9 @@
       <td><%= dacatalog_xml.id %></td>
       <td class="right"><%= dacatalog_xml.created_at %></td>
       <td class="right"><%= dacatalog_xml.rarebook_xmls.count %></th>
+      <td class="right"><%= dacatalog_xml.archives_type %></th>
+      <td class="right"><%= dacatalog_xml.archives_fonds %></th>
+      <td class="right"><%= dacatalog_xml.archives_series %></th>
       <td class="center"><%= link_to 'Show', dacatalog_xml %></td>
       <td><%= dacatalog_xml.status %></td>
       <td class="center"><%= link_to 'Del', dacatalog_xml, :confirm => 'Are you sure?', :method => :delete %></td>
