@@ -16,7 +16,7 @@
             <xsl:attribute name="GenDate"><xsl:value-of select="$date"/></xsl:attribute>臺灣珍藏史料數位典藏及加值應用計畫</Project>
           <!-- Catalog -->
           <Catalog>
-            <Record>內容主題:檔案:<xsl:value-of select="$archivesType"/>:<xsl:value-of select="$archivesFonds"/>:<xsl:value-of select="$archivesSeries"/></Record>
+            <Record>內容主題:檔案:<xsl:value-of select="$archivesFonds"/>:<xsl:value-of select="$archivesSeries"/></Record>
             <Record>典藏機構與計畫:中央研究院:臺灣史研究所:臺灣珍藏史料數位典藏及加值應用計畫:<xsl:value-of select="$archivesType"/>:<xsl:value-of select="$archivesFonds"/>:<xsl:value-of select="$archivesSeries"/></Record>
           </Catalog>
           <!-- DigiArchiveID -->
@@ -136,11 +136,15 @@
           <!-- Date -->
           <xsl:for-each select="idDesc/date">
             <Date>
-              <xsl:attribute name="field">
-                <xsl:value-of select="dateType"/>
-              </xsl:attribute>
-              <xsl:value-of select="timePeriod"/>
-              <xsl:text> (</xsl:text><xsl:value-of select="ce"/><xsl:text>)</xsl:text>
+              <xsl:if test="string(timePeriod)">
+                <xsl:attribute name="field">
+                  <xsl:value-of select="dateType"/>
+                </xsl:attribute>
+                <xsl:value-of select="timePeriod"/>
+              </xsl:if>
+              <xsl:if test="string(ce)">
+                <xsl:text> (</xsl:text><xsl:value-of select="ce"/><xsl:text>)</xsl:text>
+              </xsl:if>
             </Date>
           </xsl:for-each>
           <!-- Type -->
