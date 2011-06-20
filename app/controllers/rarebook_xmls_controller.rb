@@ -1,4 +1,6 @@
 class RarebookXmlsController < ApplicationController
+  caches_page :index
+
   def index
     @rarebook_xmls = RarebookXml.all.reverse
     @dacatalog_xml = DacatalogXml.new
@@ -13,6 +15,8 @@ class RarebookXmlsController < ApplicationController
   end
 
   def create
+    expire_page :action => :index
+
     @rarebook_xml = RarebookXml.new(params[:rarebook_xml])
 
     if @rarebook_xml.save
@@ -29,6 +33,8 @@ class RarebookXmlsController < ApplicationController
   end
 
   def destroy
+    expire_page :action => :index
+
     @rarebook_xml = RarebookXml.find(params[:id])
     @rarebook_xml.destroy
 
