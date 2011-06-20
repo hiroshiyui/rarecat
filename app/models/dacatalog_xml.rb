@@ -97,44 +97,6 @@ class DacatalogXml < ActiveRecord::Base
           }
       end
 
-=begin
-      case rarebook_xml.root.elements["type[1]"].text # to choose the right XSL and to pass the required parameters
-        when "圖書" then
-          xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog.xsl" )) )
-          xslt.parameters = {
-            "date"          => Time.now.to_s,
-            "xmlId"         => File.basename(item, ".xml")
-          }
-        when "期刊" then
-          xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog.xsl" )) )
-
-          if Journal.find_by_unique_id( rarebook_xml.root.elements["uniqueId[1]"].text ).nil? # means we can't find that journal
-            logger.debug "#{File.basename(item)} - Error: No such journal in mapping table."
-            next  # skip this item
-          else
-            xslt.parameters = {
-              "date"          => Time.now.to_s,
-              "xmlId"         => File.basename(item, ".xml"),
-              "firstIssue"    => Journal.find_by_unique_id( rarebook_xml.root.elements["uniqueId[1]"].text ).first_issue
-            }
-          end
-        when "期刊篇目" then
-          xslt.xsl = REXML::Document.new( File.open( Rails.root.join( "public", "dacatalog-journal-articles.xsl" )) )
-
-          if Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).nil?
-            logger.debug "#{File.basename(item)} - Error: No such journal in mapping table."
-            next
-          else
-            xslt.parameters = {
-              "date"          => Time.now.to_s,
-              "xmlId"         => File.basename(item, ".xml"),
-              "collectionSet" => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).collection_set,
-              "repository"    => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).repository,
-              "journalTitle"  => Journal.find_by_unique_id( rarebook_xml.root.elements["journalId[1]"].text ).title
-            }
-          end
-      end
-=end      
       dacatalog = File.path(item).chomp(".xml").concat("-dacatalog")  # name a tmp name to indicate what the generated file is.
       xslt.save(dacatalog)
     end
@@ -173,15 +135,18 @@ class GenerationJob # a delayed_job for DacatalogXml.generate()
   def success(job)
     @dacatalog_xml.update_attribute(:status, "Success!")
     @dacatalog_xml.rarebook_xmls.update_all(:status => "Job's done.")
+    #ActionController::Base.expire_page :controller => "rarebook_xmls", :action => "index"
   end
   
   def error(job, exception)
     @dacatalog_xml.update_attribute(:status, "Error...")
     @dacatalog_xml.rarebook_xmls.update_all(:status => "Error occurred.")
+    #ActionController::Base.expire_page :controller => "rarebook_xmls", :action => "index"
   end
 
   def failure
     @dacatalog_xml.update_attribute(:status, "Failed...")
     @dacatalog_xml.rarebook_xmls.update_all(:status => "Job's failed.")
+    #ActionController::Base.expire_page :controller => "rarebook_xmls", :action => "index"
   end
 end

@@ -1,5 +1,5 @@
 class RarebookXmlsController < ApplicationController
-  caches_page :index
+  caches_page :controller => "rarebook_xmls", :action => "index"
 
   def index
     @rarebook_xmls = RarebookXml.all.reverse
@@ -15,7 +15,7 @@ class RarebookXmlsController < ApplicationController
   end
 
   def create
-    expire_page :action => :index
+    expire_page :controller => "rarebook_xmls", :action => "index"
 
     @rarebook_xml = RarebookXml.new(params[:rarebook_xml])
 
@@ -33,7 +33,7 @@ class RarebookXmlsController < ApplicationController
   end
 
   def destroy
-    expire_page :action => :index
+    expire_page :controller => "rarebook_xmls", :action => "index"
 
     @rarebook_xml = RarebookXml.find(params[:id])
     @rarebook_xml.destroy
