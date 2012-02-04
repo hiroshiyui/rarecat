@@ -18,6 +18,8 @@ module RarebookXmlsHelper
   end
 
   def files(zipfile)
-    Zip::Archive.open(zipfile).num_files
+    Zip::Archive.open(zipfile) do |archive|
+      archive.num_files
+    end
   end
 end

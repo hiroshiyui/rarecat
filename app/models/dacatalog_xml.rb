@@ -102,17 +102,19 @@ class DacatalogXml < ActiveRecord::Base
     end
 
     cd(storage_path)
-    Zip::Archive.open("#{self.id.to_s}-dacatalog.zip", Zip::CREATE) do |ar|
-      Dir.glob("**/*").each do |path|
+
+    Dir.glob("**/*").each do |path|
+      Zip::Archive.open("#{self.id.to_s}-dacatalog.zip", Zip::CREATE) do |archive|
         if File.directory?(path)
-          ar.add_dir(path)
+          archive.add_dir(path)
         else
           if path.end_with?("-dacatalog")
-            ar.add_file(path.chomp("-dacatalog").concat(".xml"), path)  # rename the tmp names to .xml.
+            archive.add_file(path.chomp("-dacatalog").concat(".xml"), path) # rename the tmp names to .xml.
           end
         end
       end
     end
+
   end
 
   def clean_files

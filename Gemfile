@@ -25,7 +25,7 @@ gem 'sqlite3'
 gem 'ruby-xslt'
 gem 'zipruby'
 gem 'paperclip'
-gem 'delayed_job'
+gem 'delayed_job', '2.1.4'
 gem 'yaml_db'
 gem 'thin'
 
