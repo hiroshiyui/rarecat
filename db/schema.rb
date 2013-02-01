@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,8 +14,8 @@
 ActiveRecord::Schema.define(:version => 20110505025627) do
 
   create_table "dacatalog_xmls", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.text     "status"
     t.text     "archives_type"
     t.text     "archives_fonds"
@@ -30,15 +31,15 @@ ActiveRecord::Schema.define(:version => 20110505025627) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "journals", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.text     "unique_id"
     t.text     "title"
     t.text     "repository"
@@ -47,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20110505025627) do
   end
 
   create_table "rarebook_xmls", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "zip_file_name"
     t.string   "zip_content_type"
     t.integer  "zip_file_size"
